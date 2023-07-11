@@ -12,5 +12,5 @@ ENV PYTHONUNBUFFERED 1
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 RUN apt-get update -y
-RUN apt-get install -y python-pip
+RUN apt-get install -y python3-pip
 RUN pip install nslookup requests
