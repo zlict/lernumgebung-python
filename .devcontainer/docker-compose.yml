@@ -8,26 +8,30 @@ services:
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity
+    network_mode: service:db
 
-  mysql-server:
-    container_name: mysql-server
-    image: mariadb:jammy
-    restart: always
+  mariadb:
+    image: mariadb:10.4
+    restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: mariadb
+      MYSQL_DATABASE: mariadb
+      MYSQL_USER: mariadb
+      MYSQL_PASSWORD: mariadb
     volumes:
-      - ./mysql-data:/var/lib/mysql
-      - ../..:/workspaces:cached
+      - mariadb-data:/var/lib/mysql
     ports:
       - "3306:3306"
 
   phpmyadmin:
-    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
-    restart: always
+    restart: unless-stopped
     environment:
-      PMA_HOST: mysql-server
-      PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_HOST: mariadb
+      PMA_USER: mariadb
+      PMA_PASSWORD: mariadb
     ports:
       - "8080:80"
+
+volumes:
+  mariadb-data:
