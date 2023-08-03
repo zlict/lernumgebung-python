@@ -79,6 +79,7 @@ $RECYCLE.BIN/
 
 # Exclude solutions
 **/SOL_*
+aufgabe-16-6/images
 
 # Excelude mysql-data folder
 .devcontainer/mysql-data
