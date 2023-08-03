@@ -77,4 +77,8 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos
 
+# Exclude solutions
 **/SOL_*
+
+# Excelude mysql-data folder
+.devcontainer/mysql-data
