@@ -1,10 +1,10 @@
-import mysql.connector
-from mysql.connector import Error
+import mariadb
+from mariadb import *
 
 def create_server_connection(host_name, user_name, user_password):
     connection = None
     try:
-        connection = mysql.connector.connect(
+        connection = mariadb.connect(
             host=host_name,
             user=user_name,
             passwd=user_password
@@ -20,5 +20,5 @@ def create_database(db_connection, db_name):
     #TODO: Add connection commands and error handling
 
 
-db_connection = create_server_connection("mysql-server", "root", "root")
+db_connection = create_server_connection("lernumgebung_mariadb-server", "root", "mariadb")
 create_database(db_connection, "quiz")

@@ -11,6 +11,7 @@ services:
     network_mode: service:mariadb
 
   mariadb:
+    container_name: lernumgebung_mariadb-server
     image: mariadb:10.4
     restart: unless-stopped
     environment:
@@ -24,6 +25,7 @@ services:
       - "3306:3306"
 
   phpmyadmin:
+    container_name: lernumgebung_phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
     restart: unless-stopped
     environment:

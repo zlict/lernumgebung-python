@@ -1,10 +1,10 @@
-import mysql.connector
-from mysql.connector import Error
+import mariadb
+from mariadb import *
 
 def create_server_and_db_connection(host_name, user_name, user_password, db_name):
     connection = None
     try:
-        connection = mysql.connector.connect(
+        connection = mariadb.connect(
             host=host_name,
             user=user_name,
             passwd=user_password,
@@ -18,9 +18,8 @@ def create_server_and_db_connection(host_name, user_name, user_password, db_name
     return connection
 
 def execute_query(db_connection, query):
-
+    
     #TODO: Add execution commands and error handling
-
     
 
 create_table_question_query = """
@@ -50,12 +49,12 @@ CREATE TABLE score (
   difficulty TINYINT(1) NOT NULL,
   result_percent DECIMAL(3,2) NOT NULL,
   playedAt DATETIME NOT NULL DEFAULT NOW(),
-
+  
   PRIMARY KEY (id)
 );
 """
 
-db_connection = create_server_and_db_connection("mysql-server", "root", "root", "quiz")
+db_connection = create_server_and_db_connection("lernumgebung_mariadb-server", "root", "mariadb", "quiz")
 execute_query(db_connection, create_table_question_query)
 execute_query(db_connection, create_table_answer_query)
 execute_query(db_connection, create_table_score_query)

@@ -1,10 +1,10 @@
-import mysql.connector
-from mysql.connector import Error
+import mariadb
+from mariadb import *
 
 def create_server_and_db_connection(host_name, user_name, user_password, db_name):
     connection = None
     try:
-        connection = mysql.connector.connect(
+        connection = mariadb.connect(
             host=host_name,
             user=user_name,
             passwd=user_password,
@@ -88,6 +88,6 @@ INSERT INTO score (name, difficulty, result_percent, playedAt) VALUES
   ("Andreas Richter", 1, 0.81, "2023-07-12 11:27:40");
 """
 
-db_connection = create_server_and_db_connection("mysql-server", "root", "root", "quiz")
+db_connection = create_server_and_db_connection("lernumgebung_mariadb-server", "root", "mariadb", "quiz")
 
 # Rufen Sie die Funktion execute_query(...) mit den entsprechenden Variabeln um die Drei Tabellen mit Daten zu befüllen.
