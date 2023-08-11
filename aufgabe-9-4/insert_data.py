@@ -41,7 +41,7 @@ INSERT INTO question (question, difficulty) VALUES
 """
 
 insert_data_answer_query = """
-INSERT INTO answer (fk_question_id, answer, isCorrect) VALUES
+INSERT INTO answer (fk_question_id, answer, is_correct) VALUES
     (1, "732 Jahre", 1),
     (1, "300 Jahre", 0),
     (1, "100 Jahre", 0),
@@ -81,7 +81,7 @@ INSERT INTO answer (fk_question_id, answer, isCorrect) VALUES
 """
 
 insert_data_score_query = """
-INSERT INTO score (name, difficulty, result_percent, playedAt) VALUES
+INSERT INTO score (name, difficulty, result_percent, played_at) VALUES
   ("Hans Muster", 1, 0.99, "2023-07-12 11:33:12"),
   ("Leanra Müller", 3, 0.34, "2023-07-12 11:19:34"),
   ("Jasmin Känzig", 2, 0.67, "2023-07-12 11:15:29"),
