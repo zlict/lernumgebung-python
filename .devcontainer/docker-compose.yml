@@ -1,54 +1,39 @@
-version: "3.7"
+version: '3.8'
 
 services:
   app:
-    container_name: lernumgebung_python
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity
-    networks:
-      lernumgebung:
-        ipv4_address: 172.16.0.2
+    network_mode: service:mariadb
 
   mariadb:
     container_name: lernumgebung_mariadb-server
-    image: mariadb:10.6
+    image: mariadb:10.4
     restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_ROOT_HOST: 172.16.0.%
+      MYSQL_ROOT_PASSWORD: mariadb
+      MYSQL_DATABASE: mariadb
+      MYSQL_USER: mariadb
+      MYSQL_PASSWORD: mariadb
     volumes:
       - mariadb-data:/var/lib/mysql
     ports:
       - "3306:3306"
-    networks:
-      lernumgebung:
-        ipv4_address: 172.16.0.3
 
   phpmyadmin:
     container_name: lernumgebung_phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
-    restart: always
+    restart: unless-stopped
     environment:
-      PMA_HOST: 172.16.0.3
-      PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_HOST: mariadb
+      PMA_USER: mariadb
+      PMA_PASSWORD: mariadb
     ports:
       - "8080:80"
-    networks:
-      lernumgebung:
-        ipv4_address: 172.16.0.4
 
 volumes:
   mariadb-data:
-
-networks:
-  lernumgebung:
-    driver: bridge
-    name: lernumgebung
-    ipam:
-      config:
-        - subnet: 172.16.0.0/24
