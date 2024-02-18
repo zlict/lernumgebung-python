@@ -18,7 +18,7 @@ services:
     image: mariadb:10.6
     restart: unless-stopped
     environment:
-      MARIADB_ROOT_PASSWORD: root
+      MARIADB_ROOT_PASSWORD: mariadb
       MARIADB_ROOT_HOST: 172.16.0.%
     volumes:
       - mariadb-data:/var/lib/mysql
@@ -35,7 +35,7 @@ services:
     environment:
       PMA_HOST: 172.16.0.3
       PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_PASSWORD: mariadb
     ports:
       - "8080:80"
     networks:
